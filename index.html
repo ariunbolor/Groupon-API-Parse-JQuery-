@@ -37,9 +37,6 @@
       division_id: "new-york"
     })
     .done(function (data) {
-      console.log(data);
-      // do whatever processing you need to do to the data
-      // right here, then drop it in the div
       $.each(data.deals, function (i, v) {
 
         //$( "#").append( document.createTextNode( " - " + val ) );
@@ -57,14 +54,15 @@
 
         $footer = $("<div>", {
           class: "panel-footer"
-
         }).append($url);
-        /*
+		
+		/*
         $img = $("<img/>", {
           src: v.mediumImageUrl
         });
         */
-        $highlight = $("<div>", {
+		
+		$highlight = $("<div>", {
           html: v.title,
           class: "panel-body"
         });
