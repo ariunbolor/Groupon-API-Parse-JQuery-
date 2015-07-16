@@ -7,7 +7,6 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="icon" href="../../favicon.ico">
 
   <title>Groupon API parse example</title>
 
@@ -46,15 +45,19 @@
           class: "panel-heading"
         });
 
-        $url = $("<a/>", {
+		$url = $("<a>", {
           html: "Read more",
           href: v.dealUrl,
           class: "btn btn-default btn-sm"
-        });
+		  }).wrap(function(){
+			  return "<div class='" + $( this ).text() + "'></div>";	  
+		  });
 
         $footer = $("<div>", {
           class: "panel-footer"
-        }).append($url);
+		  }).append($url);
+		
+
 		
 		/*
         $img = $("<img/>", {
@@ -72,7 +75,7 @@
         });
 
         $("#main").append($deal);
-        $deal.prepend($title, $url, $highlight, $footer);
+        $deal.prepend($title, $highlight, $footer);
       });
     });
   });
