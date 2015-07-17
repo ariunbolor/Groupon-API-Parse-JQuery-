@@ -28,12 +28,11 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" type="text/javascript"></script>
   <script type="text/javascript">
   $(function () {
-    $.getJSON("https://api.groupon.com/v2/deals.json?callback=?",
-    {
-      client_id: "b252ad3634a4ab2985b79d230ccc4e49a3ea9d19",
-      show: "all",
-      limit: 10,
-      division_id: "new-york"
+	$.getJSON("https://partner-api.groupon.com/deals.json?callback=?", {
+	tsToken: "56c7c45c53a9636a43f52f4b89cf97242200142a",
+	division_id: "new-york",
+	//offset: 0,
+	limit: 30
     })
     .done(function (data) {
       $.each(data.deals, function (i, v) {
@@ -44,11 +43,15 @@
           html: v.announcementTitle,
           class: "panel-heading"
         });
-
+		$price = $("<div/>", {
+			html: v.options[0].price.formattedAmount,
+			class: "price"
+		});
 		$url = $("<a>", {
           html: "Read more",
-          href: v.dealUrl,
-          class: "btn btn-default btn-sm"
+		  href: v.dealUrl,
+		  target: "_blank",
+          class: "btn btn-warning btn-xs"
 		  }).wrap(function(){
 			  return "<div class='" + $( this ).text() + "'></div>";	  
 		  });
@@ -56,9 +59,6 @@
         $footer = $("<div>", {
           class: "panel-footer"
 		  }).append($url);
-		
-
-		
 		/*
         $img = $("<img/>", {
           src: v.mediumImageUrl
